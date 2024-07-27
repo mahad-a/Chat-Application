@@ -1,36 +1,58 @@
-// src/SocketIOClient.tsx
-import React, { useEffect } from 'react';
-import io from 'socket.io-client';
+import React, { useEffect, useState } from 'react';
+import io, { Socket } from 'socket.io-client';
 
 const SocketIOClient: React.FC = () => {
-    useEffect(() => {
-        const socket = io('http://localhost:5000');
+    const [socket, setSocket] = useState<Socket | null>(null);
+    const [message, setMessage] = useState('');
+    const [response, setResponse] = useState('');
 
-        socket.on('connect', () => {
+    useEffect(() => {
+        const socketInstance = io('http://localhost:5000');
+
+        socketInstance.on('connect', () => {
             console.log('Connected to server');
         });
 
-        socket.on('disconnect', () => {
+        socketInstance.on('disconnect', () => {
             console.log('Disconnected from server');
         });
 
-        // Example: Send a message to server and receive a response
-        socket.emit('chat_message', { message: 'Hello, server!' });
-
-        socket.on('chat_response', (data: any) => {
+        // Listen for server response
+        socketInstance.on('chat_response', (data: any) => {
             console.log('Server response:', data);
+            setResponse(data.message);
         });
+
+        setSocket(socketInstance);
 
         // Clean up on unmount
         return () => {
-            socket.disconnect();
+            socketInstance.disconnect();
         };
     }, []);
 
+    const handleSend = () => {
+        if (socket) {
+            socket.emit('chat_message', { message });
+            setMessage('');
+        }
+    };
+
     return (
         <div>
-            <h1>Socket.IO Client</h1>
+            <h1>IminDocker.IO Client</h1>
             <p>Open the browser console to see WebSocket events.</p>
+            <input
+                type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Type a message"
+            />
+            <button onClick={handleSend}>Send</button>
+            <div>
+                <h2>Server Response:</h2>
+                <p>{response}</p>
+            </div>
         </div>
     );
 };
