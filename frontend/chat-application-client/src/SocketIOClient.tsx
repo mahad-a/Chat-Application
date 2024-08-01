@@ -40,7 +40,7 @@ const SocketIOClient: React.FC = () => {
 
     return (
         <div>
-            <h1>IminDocker.IO Client</h1>
+            <h1>Test.IO Client</h1>
             <p>Open the browser console to see WebSocket events.</p>
             <input
                 type="text"

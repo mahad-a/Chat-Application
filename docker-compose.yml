@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   backend:
     build: ./backend
@@ -7,8 +6,10 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/chatapp
-      - SECRET_KEY=your_secret_key
+      - DATABASE_URL=postgresql://postgres:comp3005@db:5432/chatapp
+      - SECRET_KEY=abf3a7ab4a5583f7c49f4eda605172b6b986c0be5ca1363a
+    volumes:
+      - ./backend/src:/app/src  # Bind mount for immediate code changes
 
   db:
     image: postgres:15
@@ -24,7 +25,6 @@ services:
       timeout: 5s
       retries: 5
 
-
   frontend:
     build: ./frontend/chat-application-client
     ports:
@@ -34,5 +34,4 @@ services:
     volumes:
       - ./frontend/chat-application-client:/app
       - /app/node_modules
-
 
