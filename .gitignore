@@ -3,3 +3,5 @@ venv/
 /frontend/chat-application-client/src/node_modules
 /node_modules
 package-lock.json
+/backend/src/__pycache__/
+.vscode
