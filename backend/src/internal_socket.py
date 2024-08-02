@@ -12,9 +12,10 @@ def handle_message(message):
     return "Hello Front End!"
 
 def handle_login(login):
-    username = login.get('username')
-    password = login.get('password')
+    username = login['username']
+    password = login['password']
     print(f"Username: {username}, Password: {password}")
+
 
     
 def handle_connect():

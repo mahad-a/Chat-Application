@@ -1,11 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from models import Base
 import os
 
-DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = 'postgresql://postgres:comp3005@db:5432/chatapp'
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def init_db():
-    import models
-    models.Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
