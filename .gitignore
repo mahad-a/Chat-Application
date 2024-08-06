@@ -5,3 +5,6 @@ venv/
 package-lock.json
 /backend/src/__pycache__/
 .vscode
+/backend/chat-application-server/chatapp/chat_messages/__pycache__
+/backend/chat-application-server/chatapp/users/__pycache__
+/backend/chat-application-server/chatapp/chatapp/__pycache__

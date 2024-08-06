@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from chat_messages import views
+from users.views import login_view
+
 
 urlpatterns = [
     path('api/messages', views.get_messages),
     path('api/messages/add', views.add_message),
+    path('api/login/', login_view, name='login'),
     # Add other paths as necessary
 ]

@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { io, Socket } from 'socket.io-client';
-
-// Replace with your Flask-SocketIO server URL
-const SOCKET_SERVER_URL = 'http://localhost:5000';
+import React, { useState } from 'react';
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [socket, setSocket] = useState<Socket | null>(null);
 
-  useEffect(() => {
-    const socketIo = io(SOCKET_SERVER_URL);
-    setSocket(socketIo);
-
-    return () => {
-      socketIo.disconnect();
-    };
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (socket) {
-      socket.emit('login', { username, password });
-    }
+
+    // Send login data to backend
+    const response = await fetch('http://localhost:8000/api/login/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    // Handle the response from the backend
+    const data = await response.json();
+    console.log('Backend response:', data);
   };
 
   return (
