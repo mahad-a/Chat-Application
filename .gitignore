@@ -5,6 +5,10 @@ venv/
 package-lock.json
 /backend/src/__pycache__/
 .vscode
-/backend/chat-application-server/chatapp/chat_messages/__pycache__
+/backend/chat-application-server/chatapp/chat_messages/__pycache__/
 /backend/chat-application-server/chatapp/users/__pycache__
 /backend/chat-application-server/chatapp/chatapp/__pycache__
+backend/chat-application-server/chatapp/chat_messages/__pycache__/
+backend/chat-application-server/chatapp/users/migrations/__pycache__/
+backend/chat-application-server/chatapp/chat_messages/migrations/__pycache__/
+backend/chat-application-server/chatapp/chat_messages/migrations/__pycache__/__init__.cpython-310.pyc
