@@ -1,16 +1,4 @@
 services:
-  backend:
-    build: ./backend
-    ports:
-      - "5000:5000"
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgresql://postgres:comp3005@db:5432/chatapp
-      - SECRET_KEY=abf3a7ab4a5583f7c49f4eda605172b6b986c0be5ca1363a
-    volumes:
-      - ./backend/src:/app/src  # Bind mount for immediate code changes
-
   db:
     image: postgres:15
     environment:
@@ -24,6 +12,20 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://postgres:comp3005@db:5432/chatapp
+      - SECRET_KEY=abf3a7ab4a5583f7c49f4eda605172b6b986c0be5ca1363a
+    volumes:
+      - ./backend/chat-application-server/chatapp:/app  # Maps directly to /app
+
 
   frontend:
     build: ./frontend/chat-application-client
