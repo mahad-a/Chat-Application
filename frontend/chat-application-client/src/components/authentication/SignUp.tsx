@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const SignUpForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -6,10 +7,33 @@ const SignUpForm: React.FC = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('public');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement your sign-up logic here (e.g., API call)
+    setError('');
+    setSuccess('');
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/signup/', {
+        name,
+        username,
+        password,
+        email,
+        status,
+      });
+
+      if (response.status === 201) {
+        setSuccess('User registered successfully');
+        // Optionally, redirect or reset the form here
+      } else {
+        setError(response.data.error || 'An error occurred during sign-up. Please try again.');
+      }
+
+    } catch (error) {
+      setError('An error occurred during sign-up. Please try again.');
+    }
   };
 
   return (
@@ -59,6 +83,9 @@ const SignUpForm: React.FC = () => {
         </select>
       </div>
       <button type="submit">Sign Up</button>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
     </form>
   );
 };
