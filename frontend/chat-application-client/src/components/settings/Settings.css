@@ -1,0 +1,117 @@
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center; /* Center the content horizontally */
+    justify-content: center; /* Center the content vertically */
+}
+
+.top-bar {
+    background-color: darkblue;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.top-bar h1 {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 24px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button-row button {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+}
+
+.button-row button:hover {
+    background-color: #0056b3;
+}
+
+.settings-content {
+    padding: 20px;
+    background-color: #ffffff;
+    margin-top: 140px; /* Adjust based on the height of the top-bar and buttons */
+    max-width: 600px; /* Limit the maximum width of the settings content */
+    width: 100%; /* Ensure it doesn't stretch more than necessary */
+    box-sizing: border-box;
+}
+
+.popup {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.personal-info, .refer-friend, .info {
+    margin-bottom: 20px;
+}
+
+.personal-info h2, .refer-friend h2, .info h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form elements */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    max-width: 400px; /* Set a max-width for the label */
+    text-align: left;
+}
+
+.form-group input {
+    padding: 8px;
+    width: 100%;
+    max-width: 400px; /* Set a max-width for the input */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    max-width: 200px; /* Set a max-width for the button */
+    align-self: center; /* Center the button */
+}
+
+button:hover {
+    background-color: #0056b3;
+}

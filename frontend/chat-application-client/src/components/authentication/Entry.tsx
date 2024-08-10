@@ -7,7 +7,7 @@ const Entry: React.FC = () => {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '20%' }}>
-      <h1>Welcome to Chat Application</h1>
+      <h1>Welcome to new new new Chat Application</h1>
       <button 
         onClick={() => navigate('/login')} 
         style={{ margin: '10px', padding: '10px 20px', cursor: 'pointer' }}

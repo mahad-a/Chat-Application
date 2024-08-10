@@ -6,6 +6,7 @@ import LoginForm from './components/authentication/LoginFile';
 import SignUpForm from './components/authentication/SignUp';
 import Entry from './components/authentication/Entry';
 import Dashboard from './components/dashboard/Dashboard';
+import Settings from './components/settings/Settings';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </AuthProvider>
     </Router>
