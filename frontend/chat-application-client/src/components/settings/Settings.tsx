@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaHome, FaInfoCircle, FaTrashAlt, FaQuestionCircle, FaPhone } from 'react-icons/fa';
+import { FaCog, FaSignOutAlt, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa'; 
 import './Settings.css';
+import '../layout.css'
+import '../dashboard/Dashboard.css'
 
 const Settings: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<'personal' | 'refer' | 'delete' | 'faq' | 'support'>('personal');
@@ -11,7 +14,13 @@ const Settings: React.FC = () => {
   const [email, setEmail] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
 
-  const navigate = useNavigate(); // Hook to programmatically navigate
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const navigate = useNavigate();
 
   const handlePersonalInfoChange = () => {
     setPopupMessage('Did it!');
@@ -41,11 +50,37 @@ const Settings: React.FC = () => {
   }
 
   return (
-    <div className="settings-container">
+    <div className="dashboard">
+      <aside className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+        <button className="toggle-btn" onClick={toggleSidebar}>
+          {/* {isSidebarOpen ? '<<' : '>>'} */}
+          {isSidebarOpen ? <FaAngleDoubleLeft /> : <FaAngleDoubleRight />}
+        </button>
+        <div className={`sidebar-content ${isSidebarOpen ? 'open' : 'collapsed'}`}>
+          {isSidebarOpen ? (
+            <>
+              <h2>Sidebar</h2>
+              <ul>
+                <li><a href="/dashboard"><FaHome />  Home</a></li>
+                <li><a href="/profile"><FaUser />  Profile</a></li>
+                <li><a href="/settings"><FaCog />  Settings</a></li>
+                <li><a href="/login"><FaSignOutAlt />  Logout</a></li>
+              </ul>
+            </>
+          ) : (
+            <ul>
+              <li><a href="/dashboard"><FaHome /></a></li>
+              <li><a href="/profile"><FaUser /></a></li>
+              <li><a href="/settings"><FaCog /></a></li>
+              <li><a href="/login"><FaSignOutAlt /></a></li>
+            </ul>
+          )}
+        </div>
+      </aside>
       <header className="top-bar">
         <h1>Settings</h1>
         <div className="button-row">
-          <button onClick={handleHome}><FaHome /> Dashboard</button>
+          {/* <button onClick={handleHome}><FaHome /> Dashboard</button> */}
           <button onClick={() => handleTabChange('personal')}><FaUser /> Change Personal Information</button>
           <button onClick={() => handleTabChange('refer')}><FaEnvelope /> Refer a Friend</button>
           <button onClick={() => handleTabChange('delete')}><FaTrashAlt /> Delete Account</button>
@@ -53,6 +88,7 @@ const Settings: React.FC = () => {
           <button onClick={() => handleTabChange('support')}><FaPhone /> Contact Support</button>
           </div>
       </header>
+      
       <main className="settings-content">
         {popupMessage && <div className="popup">{popupMessage}</div>}
         {selectedTab === 'personal' && (

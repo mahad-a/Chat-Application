@@ -1,0 +1,250 @@
+/* ProfilePage.css */
+
+.sidebar {
+    background-color: darkblue;
+    color: white;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    position: relative; /* Relative positioning */
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+    display: flex;
+    flex-direction: column; /* Ensure items stack vertically */
+  }
+  
+  .sidebar.closed {
+    width: 60px; /* Width when collapsed */
+  }
+  
+  .sidebar.open {
+    width: 200px; /* Width when open */
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+  }
+  
+  .sidebar-content.collapsed {
+    flex: 1; /* Ensure the sidebar content is flexible */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .sidebar-content.open {
+    flex: 1; /* Ensure the sidebar content is flexible */
+  }
+  
+  .sidebar-content.open ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-content.open ul li {
+    margin: 15px 0;
+  }
+  
+  .sidebar-content.open ul li a {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-content.open ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .sidebar-content.collapsed ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sidebar-content.collapsed ul li {
+    margin: 15px 0;
+  }
+  
+  .sidebar-content.collapsed ul li a {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-content.collapsed ul li a:hover {
+    color: lightblue;
+  }
+  
+  .toggle-btn {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    position: fixed; /* Fixed position for the toggle button */
+    top: 15px; /* Position it near the top */
+    left: 15px; /* Position it near the left */
+    z-index: 20; /* Ensure it’s above other content */
+  }
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.friends-list h3 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.friend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.friend-pic {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.friend-info p {
+  margin: 0;
+}
+
+/* General form styling */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"] {
+  border: 1px solid #003366;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.profile-form button {
+  background-color: #003366;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-form button:hover {
+  background-color: #002244;
+}
+
+/* Toggle switch styling */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.toggle-switch input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-switch input[type="checkbox"]:checked {
+  background-color: #003366;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .slider {
+  left: 20px;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-label {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Make the entire toggle, including the slider, clickable */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-switch input[type="checkbox"],
+.toggle-switch .slider {
+  cursor: pointer;
+}
+
+.toggle-switch input[type="checkbox"] + .slider + .toggle-label {
+  user-select: none;
+}

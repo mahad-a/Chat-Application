@@ -32,7 +32,7 @@ button:hover {
 
 input[type="text"], input[type="password"], select {
   border: 1px solid #003366;
-  border-radius: 8px; /* Rounded corners for inputs */
+  border-radius: 20px; /* More rounded corners for text input */
   padding: 8px 16px;
   font-size: 16px;
   margin-bottom: 10px;
@@ -42,11 +42,13 @@ input[type="text"], input[type="password"], select {
   -webkit-appearance: none;
   -moz-appearance: none;
   position: relative;
+  box-shadow: 0 0 5px rgba(0, 51, 102, 0.5); /* Subtle blue shadow for bubble effect */
 }
 
 input[type="text"]:focus, input[type="password"]:focus, select:focus {
   border-color: #002244; /* Darker blue border on focus */
   outline: none;
+  box-shadow: 0 0 8px rgba(0, 34, 68, 0.8); /* More prominent shadow on focus */
 }
 
 select {
@@ -62,4 +64,46 @@ a {
 
 a:hover {
   color: #007acc; /* Darker blue on hover */
+}
+
+/* Custom styling for email input */
+input[type="email"] {
+  border: 1px solid #003366;
+  border-radius: 20px; /* Rounded corners for email input */
+  padding: 8px 16px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  background-color: #ffffff; /* White background for inputs */
+  color: #000000; /* Black text color for inputs */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  box-shadow: 0 0 5px rgba(0, 51, 102, 0.5); /* Subtle blue shadow for bubble effect */
+}
+
+/* Dropdown for selecting email providers */
+.select-email-provider {
+  border: 1px solid #003366;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23003366%22%20d%3D%22M2%200L0%202h4L2%200zM2%205l2-2H0l2%202z%22/%3E%3C/svg%3E'); /* Custom dropdown arrow */
+  background-repeat: no-repeat;
+  background-position: calc(100% - 8px) center;
+  background-size: 12px;
+}
+
+/* Additional CSS for the dropdown */
+.select-email-provider:focus {
+  border-color: #002244; /* Darker blue border on focus */
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 34, 68, 0.8); /* More prominent shadow on focus */
 }
