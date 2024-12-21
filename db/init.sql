@@ -1,20 +1,17 @@
+CREATE TABLE IF NOT EXISTS "user" (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    status BOOLEAN NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
-    sender VARCHAR(100) NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    sender_id INTEGER NOT NULL,
+    receiver_id INTEGER NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES "user"(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES "user"(user_id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS user (
-    user_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    username VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    status BOOLEAN NOT NULL
-)
-
-CREATE TABLE IF NOT EXISTS friends (
-    user_id SERIAL PRIMARY KEY,
-    
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
-)
