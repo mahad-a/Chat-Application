@@ -14,21 +14,21 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-
+  
     try {
       const response = await axios.post('http://localhost:8000/api/login/', { 
         username, 
         password 
       });
-
+  
       if (response.status === 200 && response.data.message) {
         setSuccess(response.data.message);
-        navigate('/dashboard'); // Navigate to dashboard on successful login
+        localStorage.setItem('token', response.data.token); // Store JWT token
+        navigate('/dashboard'); // Navigate to dashboard
       } else {
         setError(response.data.error || 'Invalid username or password');
       }
     } catch (error: any) {
-      console.log('Error response:', error.response);
       if (error.response && error.response.status === 400) {
         setError(error.response.data.error || 'Invalid username or password');
       } else {
@@ -36,6 +36,7 @@ const LoginForm: React.FC = () => {
       }
     }
   };
+  
 
   const handleBypass = () => {
     navigate('/dashboard'); // Directly navigate to dashboard
