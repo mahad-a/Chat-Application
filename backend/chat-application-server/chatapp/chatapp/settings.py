@@ -86,6 +86,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatapp.wsgi.application'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # This is where your Django static files go
+    BASE_DIR / 'frontend/chat-application-client/build/static',  # This is where the React build assets are stored
+]
+
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

@@ -4,8 +4,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import User
 import json
-from rest_framework_simplejwt.tokens import RefreshToken
 import logging
+import datetime
 
 logger = logging.getLogger()
 logger.setLevel("INFO")
@@ -23,10 +23,9 @@ def login_view(request):
             if not user or user.password != password:  # Compare plain text passwords
                 return JsonResponse({"error": "Invalid username or password"}, status=400)
 
-            refresh = RefreshToken.for_user(user)
             return JsonResponse({
                 "message": "Login successful",
-                "token": str(refresh.access_token)
+                "timestamp": str(datetime.datetime.now())
             }, status=200)
 
         except json.JSONDecodeError:
@@ -42,16 +41,11 @@ def signup_view(request):
             name = data.get('name')
             username = data.get('username')
             password = data.get('password')
-            email = data.get('email')
             status = data.get('status')
 
             # Validate required fields
-            if not all([name, username, password, email, status]):
+            if not all([name, username, password, status]):
                 return JsonResponse({"error": "All fields are required"}, status=400)
-
-            # Validate email format
-            if '@' not in email:
-                return JsonResponse({"error": "Invalid email format"}, status=400)
 
             # Check if username already exists
             if User.objects.filter(username=username).exists():
@@ -64,9 +58,8 @@ def signup_view(request):
             user = User(
                 name=name,
                 username=username,
-                email=email,
                 status=status_bool,
-                password=password  # Store the password as entered (plain text)
+                password=password 
             )
             user.save()
 

@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from chat_messages import views
 from users.views import *
+from . import views as main_views
 
 
 urlpatterns = [
+    path('', main_views.index, name='index'),
     path('api/messages', views.get_messages),
     path('api/messages/add', views.add_message),
     path('api/login/', login_view, name='login'),

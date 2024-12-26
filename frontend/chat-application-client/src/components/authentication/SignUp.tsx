@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm: React.FC = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [status, setStatus] = useState('public');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,13 +21,25 @@ const SignUpForm: React.FC = () => {
         name,
         username,
         password,
-        email,
         status,
       });
 
       if (response.status === 201) {
         setSuccess('User registered successfully');
-        // Optionally, redirect or reset the form here
+
+        // Log the user in immediately after successful registration
+        const loginResponse = await axios.post('http://localhost:8000/api/login/', {
+          username,
+          password,
+        });
+
+        if (loginResponse.status === 200) {
+          // Redirect to dashboard after successful login
+          navigate('/dashboard');
+        } else {
+          setError('Login failed. Please try again.');
+        }
+
       } else {
         setError(response.data.error || 'An error occurred during sign-up. Please try again.');
       }
@@ -63,15 +76,6 @@ const SignUpForm: React.FC = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </div>
