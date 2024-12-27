@@ -1,9 +1,11 @@
 from django.http import JsonResponse
 from .models import Message
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 import json
 
 # Add a message: accepts sender_id, receiver_id, and message content
+@csrf_exempt
 def add_message(request):
     if request.method == 'POST':
         try:

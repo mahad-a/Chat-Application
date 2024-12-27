@@ -10,6 +10,7 @@ import datetime
 logger = logging.getLogger()
 logger.setLevel("INFO")
 
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         try:
@@ -32,6 +33,7 @@ def login_view(request):
 
     return JsonResponse({"error": "Invalid method"}, status=405)
 
+@csrf_exempt
 def signup_view(request):
     if request.method == 'POST':
         try:
@@ -68,6 +70,7 @@ def signup_view(request):
 
     return JsonResponse({"error": "Invalid method"}, status=405)
 
+@csrf_exempt
 def get_all_users(request):
     if request.method == 'GET':
         try:
