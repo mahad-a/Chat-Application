@@ -10,7 +10,6 @@ import datetime
 logger = logging.getLogger()
 logger.setLevel("INFO")
 
-@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         try:
@@ -33,7 +32,6 @@ def login_view(request):
 
     return JsonResponse({"error": "Invalid method"}, status=405)
 
-@csrf_exempt
 def signup_view(request):
     if request.method == 'POST':
         try:
@@ -64,6 +62,21 @@ def signup_view(request):
             user.save()
 
             return JsonResponse({"message": "User registered successfully"}, status=201)
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    return JsonResponse({"error": "Invalid method"}, status=405)
+
+def get_all_users(request):
+    if request.method == 'GET':
+        try:
+            users = User.objects.all()
+            users_list = [{"id": user.user_id, "username": user.username} for user in users]
+
+            return JsonResponse({
+                "users": users_list,
+            }, status=200)
 
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)

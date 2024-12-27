@@ -27,5 +27,6 @@ urlpatterns = [
     path('api/messages/add', views.add_message),
     path('api/login/', login_view, name='login'),
     path('api/signup/', signup_view, name='signup'),
+    path('api/get_all_users/', get_all_users, name='get_users')
     # Add other paths as necessary
 ]
