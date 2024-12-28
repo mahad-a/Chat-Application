@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This chat application serves as a demonstration of building a **full-stack web application**. It showcases the use of **React (TypeScript)** for the frontend, **Django (Python)** for the backend, and **PostgreSQL** for the database, all running in **Docker containers**. The goal of this project is to demonstrate your ability to develop, containerize, and manage a web application. The code will be made available publicly, and the project might eventually be deployed to cloud platforms like **AWS**.
+This chat application is a **full-stack web application**, and is currently a work in progress. It showcases the use of **React (TypeScript)** for the frontend, **Django (Python)** for the backend, and **PostgreSQL** for the database, all running in **Docker containers**.
 
 Future features, such as user profile support with images/avatars, will be added as the application evolves.
 
@@ -34,6 +34,7 @@ Future features, such as user profile support with images/avatars, will be added
 
 - **User Registration**: Users can register with their basic information.
 - **Messaging**: Users can send and receive text messages.
+- **CRUD**
 - **Dockerized Application**: The entire application (frontend, backend, and database) is containerized using Docker for easy development and deployment.
 
 ## Planned Future Features
@@ -49,7 +50,6 @@ These instructions will help you get the project up and running on your local ma
 ### Prerequisites
 
 - **Docker**: Make sure Docker is installed and running on your machine. You can download Docker from [here](https://www.docker.com/get-started).
-- **Docker Compose** (if you plan to use it): It is usually bundled with Docker.
 
 ### Setting Up the Project Locally
 
